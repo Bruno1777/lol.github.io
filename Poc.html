@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Paddle Overlay Checkout Test</title>
+
+  <!-- Load Paddle.js -->
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+</head>
+
+<body>
+
+  <h1>Overlay Checkout Test</h1>
+
+  <button id="checkout-btn">Buy Now</button>
+
+  <script>
+    // 1️⃣ Set sandbox environment
+    Paddle.Environment.set("sandbox");
+
+    // 2️⃣ Initialize with your client-side token
+    Paddle.Initialize({
+   token:"test_e0ff5ccfc7e73f80dc57661d3f6",
+      eventCallback: function (event) {
+        console.log("Paddle Event:", event);
+      }
+    });
+
+    // 3️⃣ Attach button click
+    document.getElementById("checkout-btn").addEventListener("click", function () {
+
+      Paddle.Checkout.open({
+        items: [
+          {
+            priceId: "pri_01kh9246kbecmnh2hdvp1qwfpd",	
+            quantity: 5
+          }
+        ]
+      });
+
+    });
+  </script>
+
+</body>
+</html>
